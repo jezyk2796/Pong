@@ -23,8 +23,8 @@ let computerY = 100;
 const netWidth = 6;
 const netHeight = 16;
 
-let ballSpeedX = 1;
-let ballSpeedY = 1;
+let ballSpeedX = 5;
+let ballSpeedY = 5;
 
 function player() {
     //player paddle
@@ -43,8 +43,16 @@ function ball() {
     ctx.fillStyle = '#f1fc28';
     ctx.fillRect(ballX, ballY, ballSize, ballSize);
 
+    //ball movement
     ballX += ballSpeedX;
     ballY += ballSpeedY;
+
+    if (ballY <= 0 || ballY + ballSize >= ch) {
+        ballSpeedY = -ballSpeedY;
+    }
+    if (ballX <= 0 || ballX + ballSize >= cw){
+        ballSpeedX = -ballSpeedX;
+    }
 }
 
 function court() {
