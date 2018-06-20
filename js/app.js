@@ -8,6 +8,14 @@ const cw = canv.width;
 const ch = canv.height;
 
 const ballSize = 20;
+let ballX = cw /2 - ballSize /2;
+let ballY = ch /2 - ballSize /2;
+
+function ball() {
+    //ball
+    ctx.fillStyle = '#f1fc28';
+    ctx.fillRect(ballX, ballY, ballSize, ballSize);
+}
 
 function court() {
     //court
@@ -16,6 +24,4 @@ function court() {
 }
 
 court();
-
-ctx.fillStyle = '#f1fc28';
-ctx.fillRect(cw /2, ch /2, ballSize, ballSize);
+ball();
