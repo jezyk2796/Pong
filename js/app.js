@@ -17,8 +17,8 @@ const paddleWidth = 20;
 const playerX = 70;
 const computerX = 910;
 
-let playerY = 100;
-let computerY = 100;
+let playerY = 200;
+let computerY = 200;
 
 const netWidth = 6;
 const netHeight = 16;
@@ -67,6 +67,32 @@ function court() {
     }
 }
 
+
+
+function multi(key) {
+    if (key.keyCode == '87') {
+        playerY -= 20;
+    }
+    if (key.keyCode == '83') {
+        playerY += 20;
+    }
+    if(key.keyCode == '38') {
+        computerY -= 20;
+    }
+    if(key.keyCode == '40') {
+        computerY += 20;
+    }
+}
+
+// function single(key) {
+//     if (key.keyCode == '38') {
+//         playerY -= 15;
+//     }
+//     if (key.keyCode == '40') {
+//         playerY += 15;
+//     }
+// }
+
 function game() {
     court();
     ball();
@@ -76,3 +102,7 @@ function game() {
 
 
 setInterval(game, 1000 / 60);
+
+window.addEventListener('keydown', multi);
+
+// window.addEventListener('keydown', single);
