@@ -20,6 +20,9 @@ const computerX = 910;
 let playerY = 100;
 let computerY = 100;
 
+const netWidth = 6;
+const netHeight = 16;
+
 function player() {
     //player paddle
     ctx.fillStyle = '#fc2828';
@@ -42,6 +45,12 @@ function court() {
     //court
     ctx.fillStyle = '#276003';
     ctx.fillRect(0, 0, cw, ch);
+
+    //net
+    for(let netPosition = 20; netPosition < ch; netPosition += 30) {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(cw /2 - netWidth /2, netPosition, netWidth, netHeight);
+    }
 }
 
 court();
