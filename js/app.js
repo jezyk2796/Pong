@@ -23,6 +23,9 @@ let computerY = 100;
 const netWidth = 6;
 const netHeight = 16;
 
+let ballSpeedX = 1;
+let ballSpeedY = 1;
+
 function player() {
     //player paddle
     ctx.fillStyle = '#fc2828';
@@ -39,6 +42,9 @@ function ball() {
     //ball
     ctx.fillStyle = '#f1fc28';
     ctx.fillRect(ballX, ballY, ballSize, ballSize);
+
+    ballX += ballSpeedX;
+    ballY += ballSpeedY;
 }
 
 function court() {
@@ -53,7 +59,12 @@ function court() {
     }
 }
 
-court();
-ball();
-player();
-computer();
+function game() {
+    court();
+    ball();
+    player();
+    computer();
+}
+
+
+setInterval(game, 1000 / 60);
