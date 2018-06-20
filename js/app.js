@@ -23,18 +23,18 @@ let computerY = 200;
 const netWidth = 6;
 const netHeight = 16;
 
-let ballSpeedX = 5;
-let ballSpeedY = 5;
+let ballSpeedX = -3;
+let ballSpeedY = -3;
 
 function player() {
-    //player paddle
+    //left player paddle
     ctx.fillStyle = '#fc2828';
     ctx.fillRect(playerX, playerY, paddleWidth, paddleHeight);
 }
 
 function computer() {
-    //computer paddle
-    ctx.fillStyle = '#000000'
+    //right player paddle
+    ctx.fillStyle = '#000000';
     ctx.fillRect(computerX, computerY, paddleWidth, paddleHeight);
 }
 
@@ -53,6 +53,14 @@ function ball() {
     if (ballX <= 0 || ballX + ballSize >= cw){
         ballSpeedX = -ballSpeedX;
     }
+
+    //ball and paddle collision
+    if(ballX < playerX + ballSize && ballY > playerY && ballY < playerY + paddleHeight) {
+        ballSpeedX = -ballSpeedX;
+    }
+    if(ballX > computerX - ballSize && ballY > computerY && ballY < computerY + paddleHeight) {
+        ballSpeedX = -ballSpeedX;
+    }
 }
 
 function court() {
@@ -67,33 +75,80 @@ function court() {
     }
 }
 
-
-
-function multi(key) {
-    if (key.keyCode == '87' && playerY > 0) {
-        playerY -= 20;
-    }
-    if (key.keyCode == '83' && playerY < 400) {
-        playerY += 20;
-    }
-    if(key.keyCode == '38' && computerY > 0) {
-        computerY -= 20;
-    }
-    if(key.keyCode == '40' && computerY < 400) {
-        computerY += 20;
-    }
-}
-
-// function single(key) {
-//     if (key.keyCode == '38') {
-//         playerY -= 15;
+// function multi(key) {
+//     if (key.keyCode == '87' && playerY > 0) {
+//         playerY -= 20;
 //     }
-//     if (key.keyCode == '40') {
-//         playerY += 15;
+//     if (key.keyCode == '83' && playerY < 400) {
+//         playerY += 20;
+//     }
+//     if(key.keyCode == '38' && computerY > 0) {
+//         computerY -= 20;
+//     }
+//     if(key.keyCode == '40' && computerY < 400) {
+//         computerY += 20;
 //     }
 // }
 
+const move = {
+    player: 'stop',
+    computer: 'stop',
+}
+
+function paddlesMove() {
+    if(move.player === 'up' && playerY > 0) {
+        playerY -= 10;
+    } else if (move.player === 'down' && playerY < 400) {
+        playerY += 10;
+    }
+
+    if(move.computer === 'up' && computerY > 0) {
+        computerY -= 10;
+    } else if (move.computer === 'down' && computerY < 400) {
+        computerY += 10;
+    }
+}
+
+function keyDown(key) {
+    if (key.keyCode == '87') {
+        move.player = 'up';
+        return;
+    }
+    if (key.keyCode == '83') {
+        move.player = 'down';
+        return;
+    }
+    if(key.keyCode == '38') {
+        move.computer = 'up';
+        return;
+    }
+    if(key.keyCode == '40') {
+        move.computer = 'down';
+        return;
+    }
+}
+
+function keyUp(key) {
+    if (key.keyCode == '87') {
+        move.player = 'stop';
+        return;
+    }
+    if (key.keyCode == '83') {
+        move.player = 'stop';
+        return;
+    }
+    if(key.keyCode == '38') {
+        move.computer = 'stop';
+        return;
+    }
+    if(key.keyCode == '40') {
+        move.computer = 'stop';
+        return;
+    }
+}
+
 function game() {
+    paddlesMove();
     court();
     ball();
     player();
@@ -103,6 +158,7 @@ function game() {
 
 setInterval(game, 1000 / 60);
 
-document.addEventListener('keydown', multi);
+// document.addEventListener('keydown', multi);
 
-// window.addEventListener('keydown', single);
+document.addEventListener('keydown', keyDown);
+document.addEventListener('keyup', keyUp);
