@@ -70,16 +70,16 @@ function court() {
 
 
 function multi(key) {
-    if (key.keyCode == '87') {
+    if (key.keyCode == '87' && playerY > 0) {
         playerY -= 20;
     }
-    if (key.keyCode == '83') {
+    if (key.keyCode == '83' && playerY < 400) {
         playerY += 20;
     }
-    if(key.keyCode == '38') {
+    if(key.keyCode == '38' && computerY > 0) {
         computerY -= 20;
     }
-    if(key.keyCode == '40') {
+    if(key.keyCode == '40' && computerY < 400) {
         computerY += 20;
     }
 }
@@ -103,6 +103,6 @@ function game() {
 
 setInterval(game, 1000 / 60);
 
-window.addEventListener('keydown', multi);
+document.addEventListener('keydown', multi);
 
 // window.addEventListener('keydown', single);
