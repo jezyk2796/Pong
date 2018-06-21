@@ -26,6 +26,9 @@ const netHeight = 16;
 let ballSpeedX = -3;
 let ballSpeedY = -1;
 
+let leftPoints = 0;
+let rightPoints = 0;
+
 function player() {
     //left player paddle
     ctx.fillStyle = '#fc2828';
@@ -64,12 +67,33 @@ function ball() {
         }
     }
 
+    if(ballX < 0 - ballSize) {
+        rightPoints += 1;
+        console.log(rightPoints);
+    } else if(ballX > cw + ballSize) {
+        leftPoints += 1;
+        console.log(leftPoints);
+    }
+
     //out
     if(ballX < 0 - ballSize || ballX > cw + ballSize) {
         ballX = cw /2 - ballSize /2;
         ballY = ch /2 - ballSize /2;
+
+        if (ballSpeedX > 0) {
+            ballSpeedX = 3;
+            ballSpeedY = 1;
+        } else if (ballSpeedX < 0) {
+            ballSpeedX = -3;
+            ballSpeedY = -1;
+        }
     }
 }
+
+
+
+// document.getElementById('left').innerText = leftPoints;
+// document.getElementById('right').innerText = rightPoints;
 
 function speedUp() {
     //speeding up the ball
@@ -104,7 +128,7 @@ function court() {
 const move = {
     player: 'stop',
     computer: 'stop',
-}
+};
 
 function paddlesMove() {
     if(move.player === 'up' && playerY > 0) {
