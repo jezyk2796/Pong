@@ -94,11 +94,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         //checking points
         ctx.font = "30px Arial";
-        if(rightPoints === 11) {
-            ctx.strokeText(rightWin, cw/2 + 50, ch/2);
+        ctx.fillStyle = 'yellow';
+        if(rightPoints === 1) {
+            ctx.fillText(rightWin, cw/2 + 50, ch/2);
             clearInterval(screen);
-        } else if (leftPoints === 11) {
-            ctx.strokeText(leftWin, cw/2 - 350, ch/2);
+        } else if (leftPoints === 1) {
+            ctx.fillText(leftWin, cw/2 - 350, ch/2);
             clearInterval(screen);
         }
     }
@@ -192,8 +193,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function showPoints() {
         ctx.font = "30px Arial";
-        ctx.strokeText(leftPoints, 30, 50);
-        ctx.strokeText(rightPoints, 950, 50);
+        ctx.fillStyle = '#ffffff'
+        ctx.fillText(leftPoints, 30, 50);
+        ctx.fillText(rightPoints, 950, 50);
     }
 
     function game() {
