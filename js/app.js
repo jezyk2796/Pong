@@ -50,8 +50,11 @@ function ball() {
     if (ballY <= 0 || ballY + ballSize >= ch) {
         ballSpeedY = -ballSpeedY;
     }
-    if (ballX <= 0 || ballX + ballSize >= cw){
-        ballSpeedX = -ballSpeedX;
+
+    //out
+    if(ballX < 0 - ballSize || ballX > cw + ballSize) {
+        ballX = cw /2 - ballSize /2;
+        ballY = ch /2 - ballSize /2;
     }
 
     //ball and paddle collision
