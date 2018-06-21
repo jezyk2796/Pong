@@ -24,7 +24,7 @@ const netWidth = 6;
 const netHeight = 16;
 
 let ballSpeedX = -3;
-let ballSpeedY = -3;
+let ballSpeedY = -1;
 
 function player() {
     //left player paddle
@@ -55,10 +55,10 @@ function ball() {
     }
 
     //ball and paddle collision
-    if(ballX < playerX + ballSize && ballY > playerY && ballY < playerY + paddleHeight) {
+    if(ballX < playerX + paddleWidth && ballY + ballSize > playerY && ballY < playerY + paddleHeight) {
         ballSpeedX = -ballSpeedX;
     }
-    if(ballX > computerX - ballSize && ballY > computerY && ballY < computerY + paddleHeight) {
+    if(ballX > computerX - paddleWidth && ballY + ballSize > computerY && ballY < computerY + paddleHeight) {
         ballSpeedX = -ballSpeedX;
     }
 }
@@ -74,21 +74,6 @@ function court() {
         ctx.fillRect(cw /2 - netWidth /2, netPosition, netWidth, netHeight);
     }
 }
-
-// function multi(key) {
-//     if (key.keyCode == '87' && playerY > 0) {
-//         playerY -= 20;
-//     }
-//     if (key.keyCode == '83' && playerY < 400) {
-//         playerY += 20;
-//     }
-//     if(key.keyCode == '38' && computerY > 0) {
-//         computerY -= 20;
-//     }
-//     if(key.keyCode == '40' && computerY < 400) {
-//         computerY += 20;
-//     }
-// }
 
 const move = {
     player: 'stop',
@@ -157,8 +142,6 @@ function game() {
 
 
 setInterval(game, 1000 / 60);
-
-// document.addEventListener('keydown', multi);
 
 document.addEventListener('keydown', keyDown);
 document.addEventListener('keyup', keyUp);
