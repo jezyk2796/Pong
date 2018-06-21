@@ -51,18 +51,21 @@ function ball() {
         ballSpeedY = -ballSpeedY;
     }
 
+    if (ballX >= playerX && ballX <= computerX) {
+
+        //ball and paddle collision
+        if(ballX < playerX + paddleWidth && ballY + ballSize > playerY && ballY < playerY + paddleHeight) {
+            ballSpeedX = -ballSpeedX;
+        }
+        if(ballX > computerX - paddleWidth && ballY + ballSize > computerY && ballY < computerY + paddleHeight) {
+            ballSpeedX = -ballSpeedX;
+        }
+    }
+
     //out
     if(ballX < 0 - ballSize || ballX > cw + ballSize) {
         ballX = cw /2 - ballSize /2;
         ballY = ch /2 - ballSize /2;
-    }
-
-    //ball and paddle collision
-    if(ballX < playerX + paddleWidth && ballY + ballSize > playerY && ballY < playerY + paddleHeight) {
-        ballSpeedX = -ballSpeedX;
-    }
-    if(ballX > computerX - paddleWidth && ballY + ballSize > computerY && ballY < computerY + paddleHeight) {
-        ballSpeedX = -ballSpeedX;
     }
 }
 
