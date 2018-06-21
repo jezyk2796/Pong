@@ -94,11 +94,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         //checking points
         ctx.font = "30px Arial";
-        ctx.fillStyle = 'yellow';
-        if(rightPoints === 1) {
+        ctx.fillStyle = "yellow";
+        if(rightPoints === 11) {
             ctx.fillText(rightWin, cw/2 + 50, ch/2);
             clearInterval(screen);
-        } else if (leftPoints === 1) {
+        } else if (leftPoints === 11) {
             ctx.fillText(leftWin, cw/2 - 350, ch/2);
             clearInterval(screen);
         }
