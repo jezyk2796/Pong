@@ -33,6 +33,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const leftWin = 'LEFT PLAYER WINS !!!';
     const rightWin = 'RIGHT PLAYER WINS !!!';
 
+    //sounds
+    const left = new Audio();
+    left.src = 'sounds/left.wav';
+
+    const right = new Audio();
+    right.src = 'sounds/right.wav';
+
+    const wall = new Audio();
+    wall.src = 'sounds/wall.mp3';
+
+    const out = new Audio();
+    out.src = 'sounds/out.wav';
+
+    const end = new Audio();
+    end.src = 'sounds/end.mp3';
+
     function player() {
         //left player paddle
         ctx.fillStyle = '#fc2828';
@@ -56,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (ballY <= 0 || ballY + ballSize >= ch) {
             ballSpeedY = -ballSpeedY;
+            wall.play();
         }
 
         if (ballX >= playerX && ballX <= computerX) {
@@ -67,19 +84,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 if(ballSpeedY < 0) {
                     ballSpeedX = -ballSpeedX;
                     speedUp();
+                    left.play();
                 } else if(ballSpeedY > 0) {
                     ballSpeedX = -ballSpeedX;
                     ballSpeedY = -ballSpeedY;
                     speedUp();
+                    left.play();
                 }
             } else if(ballX < playerX + paddleWidth && ballY + ballSize > playerY + paddleHeight/2 && ballY < playerY + paddleHeight) {
                 if(ballSpeedY > 0) {
                     ballSpeedX = -ballSpeedX;
                     speedUp();
+                    left.play();
                 } else if(ballSpeedY < 0) {
                     ballSpeedX = -ballSpeedX;
                     ballSpeedY = -ballSpeedY;
                     speedUp();
+                    left.play();
                 }
             }
 
@@ -88,19 +109,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 if(ballSpeedY < 0) {
                     ballSpeedX = -ballSpeedX;
                     speedUp();
+                    right.play();
                 } else if(ballSpeedY > 0) {
                     ballSpeedX = -ballSpeedX;
                     ballSpeedY = -ballSpeedY;
                     speedUp();
+                    right.play();
                 }
             } else if(ballX > computerX - paddleWidth && ballY + ballSize > computerY + paddleHeight/2 && ballY < computerY + paddleHeight) {
                 if(ballSpeedY > 0) {
                     ballSpeedX = -ballSpeedX;
                     speedUp();
+                    right.play();
                 } else if(ballSpeedY < 0) {
                     ballSpeedX = -ballSpeedX;
                     ballSpeedY = -ballSpeedY;
                     speedUp();
+                    right.play();
                 }
             }
         }
@@ -124,6 +149,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 ballSpeedX = -3;
                 ballSpeedY = -1;
             }
+
+            out.play();
         }
 
         //checking points
@@ -132,9 +159,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if(rightPoints === 11) {
             ctx.fillText(rightWin, cw/2 + 50, ch/2);
             clearInterval(screen);
+            end.play();
         } else if (leftPoints === 11) {
             ctx.fillText(leftWin, cw/2 - 350, ch/2);
             clearInterval(screen);
+            end.play();
         }
     }
 
