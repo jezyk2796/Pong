@@ -61,13 +61,47 @@ document.addEventListener('DOMContentLoaded', function() {
         if (ballX >= playerX && ballX <= computerX) {
 
             //ball and paddle collision
-            if(ballX < playerX + paddleWidth && ballY + ballSize > playerY && ballY < playerY + paddleHeight) {
-                ballSpeedX = -ballSpeedX;
-                speedUp();
+
+            //left paddle
+            if(ballX < playerX + paddleWidth && ballY + ballSize > playerY && ballY < playerY + paddleHeight/2) {
+                if(ballSpeedY < 0) {
+                    ballSpeedX = -ballSpeedX;
+                    speedUp();
+                } else if(ballSpeedY > 0) {
+                    ballSpeedX = -ballSpeedX;
+                    ballSpeedY = -ballSpeedY;
+                    speedUp();
+                }
+            } else if(ballX < playerX + paddleWidth && ballY + ballSize > playerY + paddleHeight/2 && ballY < playerY + paddleHeight) {
+                if(ballSpeedY > 0) {
+                    ballSpeedX = -ballSpeedX;
+                    speedUp();
+                } else if(ballSpeedY < 0) {
+                    ballSpeedX = -ballSpeedX;
+                    ballSpeedY = -ballSpeedY;
+                    speedUp();
+                }
             }
-            if(ballX > computerX - paddleWidth && ballY + ballSize > computerY && ballY < computerY + paddleHeight) {
-                ballSpeedX = -ballSpeedX;
-                speedUp();
+
+            //right paddle
+            if(ballX > computerX - paddleWidth && ballY + ballSize > computerY && ballY < computerY + paddleHeight/2) {
+                if(ballSpeedY < 0) {
+                    ballSpeedX = -ballSpeedX;
+                    speedUp();
+                } else if(ballSpeedY > 0) {
+                    ballSpeedX = -ballSpeedX;
+                    ballSpeedY = -ballSpeedY;
+                    speedUp();
+                }
+            } else if(ballX > computerX - paddleWidth && ballY + ballSize > computerY + paddleHeight/2 && ballY < computerY + paddleHeight) {
+                if(ballSpeedY > 0) {
+                    ballSpeedX = -ballSpeedX;
+                    speedUp();
+                } else if(ballSpeedY < 0) {
+                    ballSpeedX = -ballSpeedX;
+                    ballSpeedY = -ballSpeedY;
+                    speedUp();
+                }
             }
         }
 
@@ -109,16 +143,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         //speed x
         if(ballSpeedX > 0 && ballSpeedX <= 20) {
-            ballSpeedX += 0.5;
+            ballSpeedX += 1;
         } else if(ballSpeedX < 0 && ballSpeedX >= -20) {
-            ballSpeedX += -0.5;
+            ballSpeedX += -1;
         }
 
         //speed y
         if(ballSpeedY > 0 && ballSpeedY <= 10) {
-            ballSpeedY += 0.5;
+            ballSpeedY += 0.7;
         } else if(ballSpeedY < 0 && ballSpeedY <= -10) {
-            ballSpeedY += -0.5;
+            ballSpeedY += -0.7;
         }
     }
 
@@ -213,6 +247,3 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('keydown', keyDown);
     document.addEventListener('keyup', keyUp);
 });
-
-
-
