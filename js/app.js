@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
     right.src = 'sounds/right.wav';
 
     const wall = new Audio();
-    wall.src = 'sounds/wall.mp3';
+    wall.src = 'sounds/wall.wav';
 
     const out = new Audio();
     out.src = 'sounds/out.wav';
@@ -156,11 +156,11 @@ document.addEventListener('DOMContentLoaded', function() {
         //checking points
         ctx.font = "30px Arial";
         ctx.fillStyle = "yellow";
-        if(rightPoints === 11) {
+        if(rightPoints === 3) {
             ctx.fillText(rightWin, cw/2 + 50, ch/2);
             clearInterval(screen);
             end.play();
-        } else if (leftPoints === 11) {
+        } else if (leftPoints === 3) {
             ctx.fillText(leftWin, cw/2 - 350, ch/2);
             clearInterval(screen);
             end.play();
